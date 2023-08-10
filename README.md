@@ -18,18 +18,18 @@ Ansible Network restore Collection is to provide a platform-agnostic way of mana
 - Users can use this operation to get differential restore and save the backed-up files to either the local data store or to the GitHub repository
 - Users can also push restore files onto GitHub with tags.
 
-## Examples
+ ## Examples
 
 ### Full Network restore
 
-#### fetch running config and saves the restore to the local data store.
+####  Read backup from the local data store and perform full restore.
 ```yaml
 run.yml
 ---
 - hosts: rtr1
   gather_facts: true
   tasks:
-    - name: Network restore and Resource Manager
+    - name: Network Restore 
       ansible.builtin.include_role:
         name: network.restore.run
       vars:
@@ -38,14 +38,14 @@ run.yml
           local: "./network_local_restore/network"
 ```
 
-#### fetch running config and publish the restore to a remote repository.
+#### Read backup from the remote data store and perform full config restore.
 ```yaml
 run.yml
 ---
 - hosts: rtr1
   gather_facts: true
   tasks:
-    - name: Network restore and Resource Manager
+    - name: Network Restore
       ansible.builtin.include_role:
         name: network.restore.run
       vars:
@@ -63,7 +63,7 @@ run.yml
 
 ### Differential Network restore
 
-#### fetch running config and saves the restore to the local data store.
+####  Read backup from the local data store and perform restore if diff exists.
 ```yaml
 run.yml
 ---
@@ -80,7 +80,7 @@ run.yml
           local: "./network_local_restore/network"
 ```
 
-#### fetch running config and publish the restore to a remote repository.
+####  Read backup from the remote data store and perform restore if diff exists.
 ```yaml
 run.yml
 ---
